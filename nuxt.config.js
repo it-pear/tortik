@@ -3,9 +3,12 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-
+  
   head: {
     title: pkg.name,
+    server: {
+      host: '0.0.0.0'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
