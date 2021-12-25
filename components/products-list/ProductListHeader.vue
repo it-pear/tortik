@@ -29,7 +29,7 @@ export default {
     },
   },
   mounted() {
-    fetch('http://0.0.0.0:3000/api/category')
+    fetch('http://62.113.98.94:3000/api/category')
     .then(response => response.json())
     .then(json => this.categories = json)
   }
