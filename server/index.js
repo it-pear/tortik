@@ -10,8 +10,8 @@ async function start() {
   const nuxt = new Nuxt(config)
   
   const {
-    host = process.env.HOST || '62.113.98.94',
-    port = process.env.PORT || 80
+    host = '62.113.98.94',
+    port = 80
   } = nuxt.options.server
 
   if (config.dev) {
