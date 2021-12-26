@@ -22,8 +22,8 @@ module.exports = {
   loading: { color: '#409EFF' },
 
   css: [
-    'element-ui/lib/theme-chalk/index.css',
-    '@/theme/index.scss',
+    // 'element-ui/lib/theme-chalk/index.css',
+    // '@/theme/index.scss',
     '@/assets/css/style.min.css'
   ],
 
@@ -39,7 +39,8 @@ module.exports = {
   axios: {},
 
   env: {
-    appName: 'SSR blog'
+    appName: 'SSR blog',
+    HOST: '62.113.98.94'
   },
 
   build: {
