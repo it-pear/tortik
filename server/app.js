@@ -10,7 +10,7 @@ const categoriesRoutes = require('./routes/category.routes')
 const commentRoutes = require('./routes/comment.routes')
 const keys = require('./keys')
 const app = express()
-// const host = '62.113.98.94'
+
 mongoose.connect(keys.MONGO_URI, { useFindAndModify: false }, {userNewUrlParser: true})
   .then(() => console.log('MongoDB connected...'))
   .catch(error => console.error(error))
@@ -25,7 +25,7 @@ mongoose.connect(keys.MONGO_URI, { useFindAndModify: false }, {userNewUrlParser:
   app.use('/api/auth', authRoutes)
   app.use('/api/post', postRoutes)
   app.use('/api/order', orderRoutes)
-  app.use('62.113.98.94/api/category', categoriesRoutes)
+  app.use('/api/category', categoriesRoutes)
   app.use('/api/comment', commentRoutes)
   
   module.exports = app
