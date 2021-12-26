@@ -7,7 +7,7 @@ module.exports = {
   head: {
     title: pkg.name,
     server: {
-      host: '62.113.98.94'  
+      host: '0.0.0.0'  
     },
     meta: [
       { charset: 'utf-8' },
