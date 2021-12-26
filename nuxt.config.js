@@ -46,7 +46,6 @@ module.exports = {
     transpile: [/^element-ui/],
     extend(config, ctx) {
 
-    },
-    HOSTNAME: '62.113.98.94'
+    }
   }
 }
