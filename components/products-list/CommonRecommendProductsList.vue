@@ -38,7 +38,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://62.113.98.94:3000/api/post') 
+    fetch('/api/post') 
     .then(response => response.json())
     .then(json => this.products = json)
   },

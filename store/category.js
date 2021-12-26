@@ -6,7 +6,7 @@
 export const actions = {
   async fetchAdmin({commit}) {
     try {
-      return await this.$axios.$get('http://62.113.98.94:3000/api/category/admin')
+      return await this.$axios.$get('/api/category/admin')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -14,7 +14,7 @@ export const actions = {
   },
   async fetch({commit}) {
     try {
-      return await this.$axios.$get('http://62.113.98.94:3000/api/category')
+      return await this.$axios.$get('/api/category')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -22,7 +22,7 @@ export const actions = {
   },
   async remove({commit}, id) {
     try {
-      return await this.$axios.$delete(`http://62.113.98.94:3000/api/category/admin/${id}`)
+      return await this.$axios.$delete(`/api/category/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -30,7 +30,7 @@ export const actions = {
   },
   async update({commit}, {id, title}) {
     try {
-      return await this.$axios.$put(`http://62.113.98.94:3000/api/category/admin/${id}`, {title})
+      return await this.$axios.$put(`/api/category/admin/${id}`, {title})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -45,7 +45,7 @@ export const actions = {
       fd.append('slug', slug)
       fd.append('image', image, image.name)
 
-      return await this.$axios.$post('http://62.113.98.94:3000/api/category/admin', fd)
+      return await this.$axios.$post('/api/category/admin', fd)
 
     } catch (e) {
       commit('setError', e, {root: true})
@@ -54,7 +54,7 @@ export const actions = {
   },
   async fetchAdminById({commit}, id) {
     try {
-      return await this.$axios.$get(`http://62.113.98.94:3000/api/category/admin/${id}`)
+      return await this.$axios.$get(`/api/category/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -62,7 +62,7 @@ export const actions = {
   },
   async fetchById({commit}, id) {
     try {
-      return await this.$axios.$get(`http://62.113.98.94:3000/api/category/${id}`)
+      return await this.$axios.$get(`/api/category/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -70,7 +70,7 @@ export const actions = {
   },
   async fetchBySlug({commit}, slug) {
     try {
-      return await this.$axios.$get(`http://62.113.98.94:3000/api/category/${slug}`)
+      return await this.$axios.$get(`/api/category/${slug}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -78,7 +78,7 @@ export const actions = {
   },
   async addView({commit}, {views, _id}) {
     try {
-      return await this.$axios.$put(`http://62.113.98.94:3000/api/category/add/view/${_id}`, {views})
+      return await this.$axios.$put(`/api/category/add/view/${_id}`, {views})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -86,7 +86,7 @@ export const actions = {
   },
   // async getAnalytics({commit}) {
   //   try {
-  //     return await this.$axios.$get('http://62.113.98.94:3000/api/category/admin/get/analytics')
+  //     return await this.$axios.$get('/api/category/admin/get/analytics')
   //   } catch (e) {
   //     commit('setError', e, {root: true})
   //     throw e

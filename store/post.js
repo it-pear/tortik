@@ -6,7 +6,7 @@ const posts = [
 export const actions = {
   async fetchAdmin({commit}) {
     try {
-      return await this.$axios.$get('http://62.113.98.94:3000/api/post/admin')
+      return await this.$axios.$get('/api/post/admin')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -14,7 +14,7 @@ export const actions = {
   },
   async fetch({commit}) {
     try {
-      return await this.$axios.$get('http://62.113.98.94:3000/api/post')
+      return await this.$axios.$get('/api/post')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -22,7 +22,7 @@ export const actions = {
   },
   async remove({commit}, id) {
     try {
-      return await this.$axios.$delete(`http://62.113.98.94:3000/api/post/admin/${id}`)
+      return await this.$axios.$delete(`/api/post/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -30,7 +30,7 @@ export const actions = {
   },
   async update({commit}, {id, text}) {
     try {
-      return await this.$axios.$put(`http://62.113.98.94:3000/api/post/admin/${id}`, {text})
+      return await this.$axios.$put(`/api/post/admin/${id}`, {text})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -48,7 +48,7 @@ export const actions = {
       fd.append('categoryname', categoryname)
       fd.append('image', image, image.name)
 
-      return await this.$axios.$post('http://62.113.98.94:3000/api/post/admin', fd)
+      return await this.$axios.$post('/api/post/admin', fd)
 
     } catch (e) {
       commit('setError', e, {root: true})
@@ -57,7 +57,7 @@ export const actions = {
   },
   async fetchAdminById({commit}, id) {
     try {
-      return await this.$axios.$get(`http://62.113.98.94:3000/api/post/admin/${id}`)
+      return await this.$axios.$get(`/api/post/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -65,7 +65,7 @@ export const actions = {
   },
   async fetchById({commit}, id) {
     try {
-      return await this.$axios.$get(`http://62.113.98.94:3000/api/post/${id}`)
+      return await this.$axios.$get(`/api/post/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -73,7 +73,7 @@ export const actions = {
   },
   async fetchCatPosts({commit}, id) {
     try {
-      const posts = await this.$axios.$get(`http://62.113.98.94:3000/api/post/`)
+      const posts = await this.$axios.$get(`/api/post/`)
       const post = posts.filter(post => {
         return post.category == id
       })
@@ -85,7 +85,7 @@ export const actions = {
   },
   async addView({commit}, {views, _id}) {
     try {
-      return await this.$axios.$put(`http://62.113.98.94:3000/api/post/add/view/${_id}`, {views})
+      return await this.$axios.$put(`/api/post/add/view/${_id}`, {views})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -93,7 +93,7 @@ export const actions = {
   },
   async getAnalytics({commit}) {
     try {
-      return await this.$axios.$get('http://62.113.98.94:3000/api/post/admin/get/analytics')
+      return await this.$axios.$get('/api/post/admin/get/analytics')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
