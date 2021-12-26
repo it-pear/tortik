@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const $host = '62.113.98.94'
+const host = '62.113.98.94'
 export default {
   name: "ProductsListFilter",
   data() {
@@ -29,7 +29,7 @@ export default {
     },
   },
   mounted() {
-    fetch(`${$host}/api/category`)
+    fetch(`${host}/api/category`)
     .then(response => response.json())
     .then(json => this.categories = json)
   }
