@@ -3,7 +3,7 @@
     id="header-3"
     class="header navik-header header-transparent header-shadow header-transparent-on"
   >
-    {{HOST}}
+    {{HOSTNAME}}
     <div class="container">
       <div class="navik-header-container">
         <div class="callusbtn">

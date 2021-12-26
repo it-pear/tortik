@@ -39,14 +39,14 @@ module.exports = {
   axios: {},
 
   env: {
-    appName: 'SSR blog',
-    HOST: '62.113.98.94'
+    appName: 'SSR blog'
   },
 
   build: {
     transpile: [/^element-ui/],
     extend(config, ctx) {
 
-    }
+    },
+    HOSTNAME: '62.113.98.94'
   }
 }
