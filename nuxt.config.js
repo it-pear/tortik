@@ -3,10 +3,9 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'history' ,
-  // server: {
-  //   host: 'localhost',
-  //   port: 3000
-  // },
+  server: {
+    host: '62.113.98.94'
+  },
   head: {
     title: pkg.name,
     meta: [
