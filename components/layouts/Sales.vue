@@ -13,7 +13,7 @@
 </p>
 
             <!-- <a href="#" class="btn btn-lg btn-salmon tra-white-hover">Сделать заказ</a> -->
-            <a href="tel:89960501010" class="btn btn-lg btn-red tra-red-hover">+7 (996) 050-10-10</a>
+            <a href="tel:89288815612" class="btn btn-lg btn-red tra-red-hover">+7 (928) 881-56-12</a>
 
           </div>
         </div>
