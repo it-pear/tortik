@@ -35,7 +35,9 @@ module.exports = {
     '@nuxtjs/axios'
   ],
 
-  axios: {},
+  axios: {
+    baseURL: 'http://62.113.98.94:80', // Used as fallback if no runtime config is provided
+  },
 
   env: {
     appName: 'SSR blog'
