@@ -36,7 +36,7 @@ module.exports = {
   ],
 
   axios: {
-    baseURL: 'http://62.113.98.94:80', // Used as fallback if no runtime config is provided
+    baseURL: 'http://test.kuzano.beget.tech', // Used as fallback if no runtime config is provided
   },
 
   env: {
