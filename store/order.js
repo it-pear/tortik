@@ -2,7 +2,7 @@
 export const actions = {
   async fetchAdmin({commit}) {
     try {
-      return await this.$axios.$get('/api/order/admin')
+      return await this.$axios.$get('http://62.113.98.94:3000/api/order/admin')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -10,7 +10,7 @@ export const actions = {
   },
   async fetch({commit}) {
     try {
-      return await this.$axios.$get('/api/order')
+      return await this.$axios.$get('http://62.113.98.94:3000/api/order')
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -18,7 +18,7 @@ export const actions = {
   },
   async remove({commit}, id) {
     try {
-      return await this.$axios.$delete(`/api/order/admin/${id}`)
+      return await this.$axios.$delete(`http://62.113.98.94:3000/api/order/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -26,7 +26,7 @@ export const actions = {
   },
   async update({commit}, {id, text}) {
     try {
-      return await this.$axios.$put(`/api/order/admin/${id}`, {text})
+      return await this.$axios.$put(`http://62.113.98.94:3000/api/order/admin/${id}`, {text})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -48,7 +48,7 @@ export const actions = {
         phone,
         adres
       }
-      return await this.$axios.$post('/api/order/admin', user)
+      return await this.$axios.$post('http://62.113.98.94:3000/api/order/admin', user)
 
     } catch (e) {
       commit('setError', e, {root: true})
@@ -57,7 +57,7 @@ export const actions = {
   },
   async fetchAdminById({commit}, id) {
     try {
-      return await this.$axios.$get(`/api/order/admin/${id}`)
+      return await this.$axios.$get(`http://62.113.98.94:3000/api/order/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -65,7 +65,7 @@ export const actions = {
   },
   async fetchById({commit}, id) {
     try {
-      return await this.$axios.$get(`/api/order/${id}`)
+      return await this.$axios.$get(`http://62.113.98.94:3000/api/order/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -73,7 +73,7 @@ export const actions = {
   },
   async addView({commit}, {views, _id}) {
     try {
-      return await this.$axios.$put(`/api/order/add/view/${_id}`, {views})
+      return await this.$axios.$put(`http://62.113.98.94:3000/api/order/add/view/${_id}`, {views})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e

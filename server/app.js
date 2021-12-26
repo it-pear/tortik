@@ -22,10 +22,10 @@ mongoose.connect(keys.MONGO_URI, {userNewUrlParser: true})
   app.use(bodyParser.json())
   
   
-  app.use('/api/auth', authRoutes)
-  app.use('/api/post', postRoutes)
-  app.use('/api/order', orderRoutes)
-  app.use('/api/category', categoriesRoutes)
-  app.use('/api/comment', commentRoutes)
+  app.use('http://62.113.98.94:3000/api/auth', authRoutes)
+  app.use('http://62.113.98.94:3000/api/post', postRoutes)
+  app.use('http://62.113.98.94:3000/api/order', orderRoutes)
+  app.use('http://62.113.98.94:3000/api/category', categoriesRoutes)
+  app.use('http://62.113.98.94:3000/api/comment', commentRoutes)
   
   module.exports = app

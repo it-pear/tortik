@@ -96,7 +96,7 @@ export const actions = {
         posts
       }
       commit('clear')
-      return await this.$axios.$post('/api/order/admin', formData)
+      return await this.$axios.$post('http://62.113.98.94:3000/api/order/admin', formData)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
