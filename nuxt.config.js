@@ -21,7 +21,7 @@ module.exports = {
   loading: { color: '#409EFF' },
 
   css: [
-    // 'element-ui/lib/theme-chalk/index.css',
+    'element-ui/lib/theme-chalk/index.css',
     // '@/theme/index.scss',
     '@/assets/css/style.min.css'
   ],
