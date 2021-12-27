@@ -10939,7 +10939,7 @@ a.text-dark:focus, a.text-dark:hover {
     }
     .tel-mb {
         display: block;
-        color: #f7be27;
+        color: #181818;
         font-size: 20px;
         font-weight: 500;
         margin-left: 15px;
@@ -15425,7 +15425,7 @@ span.item-code {
 }
 
 #header-3 .navik-menu ul li.nav-btn.yellow-color>a {
-    color: #f7be27
+    color: #181818;
 }
 
 #header-3 .navik-menu ul li.nav-btn.red-color>a {
@@ -15558,6 +15558,7 @@ span.ico-holder {
     max-width: 100%;
     height: 660px
 }
+
 
 #hero-3 .slider {
     height: 700px
@@ -18202,7 +18203,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 #footer-3 .footer-logo img {
-    max-height: 120px
+    max-height: 160px
 }
 
 .footer h5 {
@@ -19843,7 +19844,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 200px
     }
     .footer-img img.insta-img {
         width: 85px;
@@ -20982,7 +20983,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 160px
     }
     .footer h5 {
         font-size: 1.4rem
@@ -22282,7 +22283,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 160px
     }
     .footer h5 {
         font-size: 1.4rem
@@ -23550,7 +23551,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 160px
     }
     .footer h5 {
         font-size: 1.4rem
@@ -24840,7 +24841,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 160px
     }
     .footer h5 {
         font-size: 1.4rem
@@ -26182,7 +26183,7 @@ nav a#pull {
         padding-left: 0
     }
     #footer-3 .footer-logo img {
-        max-height: 100px
+        max-height: 160px
     }
     .footer h5 {
         font-size: 1.4rem
@@ -26426,3 +26427,14 @@ nav a#pull {
         font-size: 14px !important;
     }
 }  */
+@media (max-width: 355px) {
+    .navik-header .logo img {
+        max-height: 45px;
+    }
+    .tel-mb {
+        font-size: 18px;
+    }
+    .burger-menu {
+        top: 22px;
+    }
+}

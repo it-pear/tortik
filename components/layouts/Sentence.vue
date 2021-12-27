@@ -11,6 +11,7 @@
     <div class="slider">
       <img src="@/assets/img/full-fon.jpg" />
       <img src="@/assets/img/mb-fon.jpg" />
+      <h1>Доставка еды и кондитерских изделий "Точка"</h1>
     </div>
   </VueSlickCarousel>
   
@@ -33,9 +34,33 @@ export default {
 <style>
 .slider{
   height: 100vh;
+  position: relative;
+}
+h1 {
+  position: absolute;
+  padding: 0 15px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 64px;
+  line-height: 72px;
+  height: 72px;
+  color: white;
+  text-align: center;
+  text-transform: none;
+}
+@media (max-width: 772px) {
+  h1 {
+    font-size: 42px;
+    line-height: 48px;
+    height: 148px;
+  }
 }
 .slider img {
   width: 100%;
+  object-fit: cover;
 }
 .slider img:first-child{
     display: block;

@@ -32,9 +32,9 @@
         <div class="col-md-12">
           <div id="gmap">
             <div class="google-map text-center">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.15788042539!2d38.09719291552712!3d44.55287267910074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f18a196ab6fefb%3A0xdda583cd29db5d22!2z0YPQuy4g0KHRg9GA0LjQutC-0LLQsCwgNjAsINCT0LXQu9C10L3QtNC20LjQuiwg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1MzQ2MA!5e0!3m2!1sru!2sru!4v1640553436423!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.15788042539!2d38.09719291552712!3d44.55287267910074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f18a196ab6fefb%3A0xdda583cd29db5d22!2z0YPQuy4g0KHRg9GA0LjQutC-0LLQsCwgNjAsINCT0LXQu9C10L3QtNC20LjQuiwg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1MzQ2MA!5e0!3m2!1sru!2sru!4v1640553436423!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
               <br>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45490.12269783657!2d38.114090832320954!3d44.55338874161387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f2209e366f6407%3A0x779f491d18b648eb!2z0JrRgNGL0LzRgdC60LDRjyDRg9C7LiwgMTksINC6NSwg0JPQtdC70LXQvdC00LbQuNC6LCDQmtGA0LDRgdC90L7QtNCw0YDRgdC60LjQuSDQutGA0LDQuSwgMzUzNDYx!5e0!3m2!1sru!2sru!4v1640553530193!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45490.12269783657!2d38.114090832320954!3d44.55338874161387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f2209e366f6407%3A0x779f491d18b648eb!2z0JrRgNGL0LzRgdC60LDRjyDRg9C7LiwgMTksINC6NSwg0JPQtdC70LXQvdC00LbQuNC6LCDQmtGA0LDRgdC90L7QtNCw0YDRgdC60LjQuSDQutGA0LDQuSwgMzUzNDYx!5e0!3m2!1sru!2sru!4v1640553530193!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
           </div>
         </div>
