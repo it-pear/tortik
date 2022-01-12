@@ -37,7 +37,7 @@ module.exports = {
   ],
 
   axios: {
-    baseURL: 'http://kulinariagel.ru', // Used as fallback if no runtime config is provided
+    baseURL: 'http://kulinariagel.ru'
   },
 
   env: {

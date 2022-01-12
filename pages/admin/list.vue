@@ -9,6 +9,7 @@
     </el-menu-item>
   </el-menu>
     <hr style="margin-top: 20px"><br>
+
     <el-table :data="posts" style="width: 100%">
 
       <el-table-column
@@ -16,9 +17,18 @@
         label="Название"
       />
       <el-table-column
-        prop="category"
+        prop="categoryname"
         label="Категория"
       />
+      <!-- imageUrl -->
+      <el-table-column
+        label="Картинка"
+      >
+        <template slot-scope="{row: {imageUrl}}">
+          <img :src='imageUrl' alt="">
+        </template>
+      </el-table-column>
+      
       <el-table-column label="Дата">
         <template slot-scope="{row: {date}}">
           <i class="el-icon-time"></i>
@@ -35,14 +45,14 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="Комментарии">
+      <!-- <el-table-column label="Комментарии">
         <template slot-scope="{row: {comments}}">
           <i class="el-icon-message"></i>
           <span style="margin-left: 10px">
             {{ comments.length }}
           </span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       
       <el-table-column label="Действия">
         <template slot-scope="{row}">
@@ -104,5 +114,8 @@ export default {
 <style scoped>
   .el-menu-item:focus, .el-menu-item:hover {
     background-color: rgba(0,0,0,0);
+  }
+  .el-table__body .el-table__row img {
+    max-height: 85px;
   }
 </style>
