@@ -121,6 +121,7 @@ export default {
   methods: {
     handleImageChange(file, fileLiset) {
       this.image = file.raw
+      console.log(this.image)
     },
     onSubmit() {
       this.$refs.form.validate(async valid => {

@@ -1,7 +1,7 @@
 const { post } = require('../app')
 const Post = require('../models/post.model')
 
-
+debugger
 module.exports.create = async (req, res) => {
   const post = new Post({
     title: req.body.title,
@@ -11,7 +11,8 @@ module.exports.create = async (req, res) => {
     categoryname: req.body.categoryname,
     imageUrl: `/${req.file.filename}`
   })
-  console.log(req.body.title)
+
+  // console.log(req.body.title)
   try {
     await post.save()
     res.status(201).json(post)
@@ -41,7 +42,23 @@ module.exports.getById = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   const $set = {
-    text: req.body.text
+    text: req.body.text,
+    // imageUrl: `/lalalalal`
+    imageUrl: `/${req?.file?.filename}`
+  }
+  try {
+    const post = await Post.findOneAndUpdate({
+      _id: req.params.id
+    }, {$set}, {new: true})
+    res.json(post)
+  } catch (e) {
+    res.status(500).json(e)
+  }
+}
+
+module.exports.updateImage = async (req, res) => {
+  const $set = {
+    imageUrl: req.body.imageUrl
   }
   try {
     const post = await Post.findOneAndUpdate({

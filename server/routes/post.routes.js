@@ -27,7 +27,13 @@ router.get(
 router.put(
   '/admin/:id',
   passport.authenticate('jwt', {session: false}),
+  upload.single('image'),
   ctr.update
+)
+router.put(
+  '/updateImage/:id',
+  passport.authenticate('jwt', {session: false}), 
+  ctr.updateImage
 )
 
 router.delete(

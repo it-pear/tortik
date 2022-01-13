@@ -1,10 +1,10 @@
 <template>
-  <div class="page-wrap">
+  <div class="page-wrap page-admin-post">
     <el-breadcrumb separator="/" class="mb">
       <el-breadcrumb-item to="/admin/list">Посты</el-breadcrumb-item>
       <el-breadcrumb-item>{{post.title}}</el-breadcrumb-item>
     </el-breadcrumb>
-
+    {{post}}
     <el-form
       :model="controls"
       :rules="rules"
@@ -21,6 +21,30 @@
           :rows="10"
         />
       </el-form-item>
+      <el-form-item label="Картинка" prop="text" class="el-form-item-image">
+        {{post.imageUrl}}
+        <img :src='post.imageUrl' alt="">
+        <el-button
+          type="danger"
+          round
+          :loading="loading"
+          @click="delImage"
+        >
+        Удалить картинку
+        </el-button>
+        <br>
+        <el-upload
+          drag
+          ref="upload"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-change="handleImageChange"  
+          :auto-upload="false"
+        >
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
+          <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
+        </el-upload>
+      </el-form-item>
 
       <div class="mb">
         <small class="mr">
@@ -34,7 +58,7 @@
           <span> {{ post.views }} </span>
         </small>
       </div>
-
+      <br>
       <el-form-item>
         <el-button
           type="primary"
@@ -69,6 +93,7 @@ export default {
   data() {
     return {
       loading: false,
+      image: null,
       controls: {
         text: ''
       },
@@ -83,22 +108,58 @@ export default {
     this.controls.text = this.post.text
   },
   methods: {
+    handleImageChange(file, fileLiset) {
+      this.image = file.raw
+    },
+    delImage() {
+      this.$refs.form.validate(async valid => {
+        if (valid) {
+          this.loading = true
+          const formData = {
+            imageUrl: null,
+            id: this.post._id
+          }
+          
+          try {
+            await this.$store.dispatch('post/updateImage', formData)
+            this.$message.success('картинка удалена')
+            this.loading = false
+            
+          } catch (e) {
+            this.$message.warning('что то пошло не так, попробуйте позже')
+            this.loading = false
+          }
+          
+        }
+      })
+    },
     onSubmit() {
       this.$refs.form.validate(async valid => {
         if (valid) {
           this.loading = true
-
+          
+          // if (this.image) {
+          //   const formData = {
+          //     text: this.controls.text,
+          //     imageUrl: this.image,
+          //     id: this.post._id
+          //   }
+          // } else {
           const formData = {
             text: this.controls.text,
+            image: this.image || new Object({name: this.post.imageUrl}),
             id: this.post._id
           }
-
+          // }
+          console.log(this.image)
+          debugger
           try {
             await this.$store.dispatch('post/update', formData)
             this.$message.success('Пост обновлен')
             this.loading = false
           } catch (e) {
             this.loading = false
+            
           }
           
         }
@@ -109,12 +170,25 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-  .page-wrap {
-    max-width: 600px;
-  }
-
+<style lang="scss">
+.page-admin-post {
+  max-width: 600px;
   .mr {
     margin-right: 2rem;
   }
+
+  .el-form-item-image,
+  .el-form-item-image .el-form-item__content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    img {
+      max-height: 100px;
+    }
+    button {
+      margin-top: 14px;
+    }
+  }
+}
+  
 </style>
