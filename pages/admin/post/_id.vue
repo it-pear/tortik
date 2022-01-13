@@ -123,7 +123,7 @@ export default {
     },
     uploudmage() {
       this.$refs.form.validate(async valid => {
-        if (valid && typeof(this.image) === 'object') {
+        if (valid && this.image != null && typeof(this.image) === 'object') {
           this.loading = true
           const formData = {
             image: this.image,

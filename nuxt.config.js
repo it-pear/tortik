@@ -36,9 +36,9 @@ module.exports = {
     '@nuxtjs/axios'
   ],
 
-  axios: {
-    baseURL: 'http://kulinariagel.ru'
-  },
+  // axios: {
+  //   baseURL: 'http://kulinariagel.ru'
+  // },
 
   env: {
     appName: 'SSR blog'
