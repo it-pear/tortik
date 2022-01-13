@@ -4,7 +4,7 @@
       <el-breadcrumb-item to="/admin/list">Посты</el-breadcrumb-item>
       <el-breadcrumb-item>{{post.title}}</el-breadcrumb-item>
     </el-breadcrumb>
-    {{post}}
+
     <el-form
       :model="controls"
       :rules="rules"
@@ -22,15 +22,14 @@
         />
       </el-form-item>
       <el-form-item label="Картинка" prop="text" class="el-form-item-image">
-        {{post.imageUrl}}
-        <img :src='post.imageUrl' alt="">
+        <img :src='image' alt="">
         <el-button
           type="danger"
           round
           :loading="loading"
           @click="delImage"
         >
-        Удалить картинку
+          Удалить картинку
         </el-button>
         <br>
         <el-upload
@@ -44,8 +43,16 @@
           <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
           <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
         </el-upload>
+        <el-button
+          type="warning"
+          round
+          :loading="loading"
+          @click="uploudmage"
+        >
+          Обновить картинку
+        </el-button>
       </el-form-item>
-
+      <br>
       <div class="mb">
         <small class="mr">
           <i class="el-icon-time"></i>
@@ -69,6 +76,7 @@
           Обновить
         </el-button>
       </el-form-item>
+      
     </el-form>
   </div>
 </template>
@@ -93,6 +101,7 @@ export default {
   data() {
     return {
       loading: false,
+      post: [],
       image: null,
       controls: {
         text: ''
@@ -106,15 +115,42 @@ export default {
   },
   mounted() {
     this.controls.text = this.post.text
+    this.image = this.post.imageUrl
   },
   methods: {
-    handleImageChange(file, fileLiset) {
-      this.image = file.raw
+    handleImageChange(file) {
+      this.image = file.raw 
+    },
+    uploudmage() {
+      this.$refs.form.validate(async valid => {
+        if (valid && typeof(this.image) === 'object') {
+          this.loading = true
+          const formData = {
+            image: this.image,
+            id: this.post._id
+          }
+          
+          // console.log(post)
+          try {
+            await this.$store.dispatch('post/uploudImage', formData)
+            const post = await this.$store.dispatch('post/fetchAdminById', formData.id)
+            this.image = post.imageUrl
+              
+              // return this.image = post
+            this.$message.success('картинка обновлена')
+            this.loading = false
+          } catch (e) {
+            this.$message.warning('что то пошло не так, попробуйте позже')
+            this.loading = false
+          }
+        }
+      })   
     },
     delImage() {
       this.$refs.form.validate(async valid => {
-        if (valid) {
+        if (valid && this.image) {
           this.loading = true
+          
           const formData = {
             imageUrl: null,
             id: this.post._id
@@ -122,9 +158,10 @@ export default {
           
           try {
             await this.$store.dispatch('post/updateImage', formData)
+            
             this.$message.success('картинка удалена')
             this.loading = false
-            
+            this.image = null
           } catch (e) {
             this.$message.warning('что то пошло не так, попробуйте позже')
             this.loading = false
@@ -138,21 +175,11 @@ export default {
         if (valid) {
           this.loading = true
           
-          // if (this.image) {
-          //   const formData = {
-          //     text: this.controls.text,
-          //     imageUrl: this.image,
-          //     id: this.post._id
-          //   }
-          // } else {
           const formData = {
             text: this.controls.text,
-            image: this.image || new Object({name: this.post.imageUrl}),
             id: this.post._id
           }
-          // }
-          console.log(this.image)
-          debugger
+          
           try {
             await this.$store.dispatch('post/update', formData)
             this.$message.success('Пост обновлен')

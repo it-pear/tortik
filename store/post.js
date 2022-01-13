@@ -28,13 +28,19 @@ export const actions = {
       throw e
     }
   },
-  async update({commit}, {id, text, image}) {
+  async update({commit}, {id, text}) {
     try {
-      // let govno = image.name || ''
-      const fd = new FormData() 
-      fd.append('text', text)
-      fd.append('image', image || '', image.name)
-      return await this.$axios.$put(`/api/post/admin/${id}`, fd)
+      return await this.$axios.$put(`/api/post/admin/${id}`, {text})
+    } catch (e) {
+      commit('setError', e, {root: true})
+      throw e
+    }
+  },
+  async uploudImage({commit}, {id, image}) {
+    try {
+      const fd = new FormData()
+      fd.append('image', image, image.name)
+      return await this.$axios.$put(`/api/post/uploudImage/${id}`, fd)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e

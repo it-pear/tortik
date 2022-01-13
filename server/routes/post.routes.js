@@ -27,8 +27,13 @@ router.get(
 router.put(
   '/admin/:id',
   passport.authenticate('jwt', {session: false}),
+  ctr.update,
+)
+router.put(
+  '/uploudImage/:id',
+  passport.authenticate('jwt', {session: false}),
   upload.single('image'),
-  ctr.update
+  ctr.uploudImage,
 )
 router.put(
   '/updateImage/:id',
