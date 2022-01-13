@@ -2,8 +2,10 @@ const pkg = require('./package')
 
 
 module.exports = {
-  mode: 'universal',
-
+  mode: 'history' ,
+  // server: {
+  //   host: '62.113.98.94'
+  // },
   head: {
     title: pkg.name,
     meta: [
@@ -19,9 +21,10 @@ module.exports = {
   loading: { color: '#409EFF' },
 
   css: [
+    
+    // '@/theme/index.scss',
+    '@/assets/css/style.min.css',
     'element-ui/lib/theme-chalk/index.css',
-    '@/theme/index.scss',
-    '@/assets/css/style.min.css'
   ],
 
   plugins: [
@@ -33,7 +36,9 @@ module.exports = {
     '@nuxtjs/axios'
   ],
 
-  axios: {},
+  // axios: {
+  //   baseURL: 'http://kulinariagel.ru'
+  // },
 
   env: {
     appName: 'SSR blog'

@@ -38,7 +38,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost:3000/api/post') 
+    fetch('/api/post') 
     .then(response => response.json())
     .then(json => this.products = json)
   },

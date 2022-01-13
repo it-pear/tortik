@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "http://62.113.98.94:80",
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],

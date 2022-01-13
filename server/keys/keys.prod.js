@@ -1,4 +1,4 @@
 module.exports = {
-  MONGO_URI: process.env.MONGO_URI,
-  JWT: process.env.JWT
+  MONGO_URI: `mongodb+srv://admin:Rootgel2000@cluster0.sn6xw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  JWT: 'prod-jwt-key'
 }

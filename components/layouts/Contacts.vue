@@ -8,7 +8,8 @@
               <div class="cbox-5">
                 <h5 class="h5-lg">Местоположение</h5>
                 <p class="p-md">г. Геленджик</p>
-                <p class="p-md">ул. Курзальная - 12</p>
+                <p class="p-md">Ул. Сурикова д.60</p>
+                <p class="p-md">Ул. Крымская д 19. К5</p>
               </div>
             </div>
             <div class="col-md-4">
@@ -21,7 +22,7 @@
             <div class="col-md-4">
               <div class="cbox-5">
                 <h5 class="h5-lg">Телефон:</h5>
-                <p class="p-md"><a href="tel:89960501010">+7 (996) 050-10-10</a></p>
+                <p class="p-md"><a href="tel:89288815612">+7 (928) 881-56-12</a></p>
               </div>
             </div>
           </div>
@@ -31,7 +32,9 @@
         <div class="col-md-12">
           <div id="gmap">
             <div class="google-map text-center">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.116548562125!2d38.072184314914786!3d44.553718701751805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f18a0d28b60a3f%3A0x4e23f4ae200ca835!2z0YPQuy4g0JrRg9GA0LfQsNC70YzQvdCw0Y8sIDEyLCDQk9C10LvQtdC90LTQttC40LosINCa0YDQsNGB0L3QvtC00LDRgNGB0LrQuNC5INC60YDQsNC5LCAzNTM0NjE!5e0!3m2!1sru!2sru!4v1612986667273!5m2!1sru!2sru" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.15788042539!2d38.09719291552712!3d44.55287267910074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f18a196ab6fefb%3A0xdda583cd29db5d22!2z0YPQuy4g0KHRg9GA0LjQutC-0LLQsCwgNjAsINCT0LXQu9C10L3QtNC20LjQuiwg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1MzQ2MA!5e0!3m2!1sru!2sru!4v1640553436423!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              <br>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45490.12269783657!2d38.114090832320954!3d44.55338874161387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f2209e366f6407%3A0x779f491d18b648eb!2z0JrRgNGL0LzRgdC60LDRjyDRg9C7LiwgMTksINC6NSwg0JPQtdC70LXQvdC00LbQuNC6LCDQmtGA0LDRgdC90L7QtNCw0YDRgdC60LjQuSDQutGA0LDQuSwgMzUzNDYx!5e0!3m2!1sru!2sru!4v1640553530193!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
           </div>
         </div>

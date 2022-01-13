@@ -6,11 +6,7 @@
       :labels="views.labels"
       :data="views.data"
     />
-    <AnalyticChart 
-      title="Количество комментариев"
-      :labels="comments.labels"
-      :data="comments.data"
-    />
+
   </div>
 </template>
 
