@@ -41,7 +41,7 @@ module.exports = {
   },
 
   env: {
-    appName: 'SSR blog'
+    appName: 'kulinariagel.ru'
   },
 
   build: {
