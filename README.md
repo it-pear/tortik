@@ -1,4 +1,4 @@
-# nuxt-blog
+# nuxt-shop
 
 ## Build Setup
 
