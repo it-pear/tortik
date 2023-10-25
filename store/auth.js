@@ -32,7 +32,7 @@ export const actions = {
       commit('setError', e, {root: true})
       throw e
     }
-  }, 
+  },
   setToken({commit}, token) {
     this.$axios.setToken(token, 'Bearer')
     commit('setToken', token)
@@ -45,9 +45,10 @@ export const actions = {
   },
   autoLogin({dispatch}) {
     const cookieStr = process.browser
-      ? document.cookie
-      : this.app.context.req.headers.cookie
-    
+  ? document.cookie
+  : (this.app.context && this.app.context.req ? this.app.context.req.headers.cookie : '');
+
+
     const cookies = Cookie.parse(cookieStr || '') || {}
     const token = cookies['jwt-token']
 
@@ -56,7 +57,7 @@ export const actions = {
     } else {
       dispatch('logout')
     }
-    
+
   }
 }
 
@@ -73,6 +74,6 @@ function isJWTValid(token) {
 
   const jwtData = jwtDecode(token) || {}
   const expires = jwtData.exp || 0
-  
+
   return (new Date().getTime() / 1000) < expires
 }
