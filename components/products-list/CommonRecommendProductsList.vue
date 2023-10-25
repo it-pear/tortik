@@ -14,10 +14,10 @@
       <!-- <h3 class="text-center">Самый популярные блюда</h3><br><br> -->
       <div class="row">
         <products-list-card
-          v-for="product in filteredPosts.slice(0, 8)" 
+          v-for="product in filteredPosts.slice(0, 8)"
           :key="product._id"
           :product="product"
-        /> 
+        />
       </div>
       <!-- {{filteredPosts}} -->
     </div>
@@ -38,7 +38,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost:3000/api/post') 
+    fetch('https://kulinariagel.ru/api/post')
     .then(response => response.json())
     .then(json => this.products = json)
   },
@@ -50,8 +50,8 @@ export default {
       return this.products.filter(p => p.category == this.cateoryProduc)
     }
   },
-  
 
-  
+
+
 };
 </script>

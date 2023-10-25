@@ -21,7 +21,7 @@
             <div class="col-md-4">
               <div class="cbox-5">
                 <h5 class="h5-lg">Телефон:</h5>
-                <p class="p-md"><a href="tel:89960501010">+7 (996) 050-10-10</a></p>
+                <p class="p-md"><a href="tel:89288815612">+7 (928) 881-56-12</a></p>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
       <!-- <div class="row">
         <div class="col-lg-10 offset-lg-1">
           <div class="section-title mb-40 text-center">
@@ -71,6 +71,6 @@
           </div>
         </div>
       </div> -->
-    </div> 
+    </div>
   </section>
 </template>

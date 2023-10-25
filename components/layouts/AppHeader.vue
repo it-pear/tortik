@@ -6,7 +6,7 @@
     <div class="container">
       <div class="navik-header-container">
         <div class="callusbtn">
-          <a href="tel:89960501010"><i class="fas fa-phone"></i></a>
+          <a href="tel:89288815612"><i class="fas fa-phone"></i></a>
         </div>
         <div
           class="logo"
@@ -16,7 +16,7 @@
           <nuxt-link to="/"
             ><img src="@/assets/img/logo.png" alt="header-logo"
           /></nuxt-link>
-          <a href="tel:89960501010" class="tel-mb">+7 (996) 050-10-10</a>
+          <a href="tel:89288815612" class="tel-mb">+7 (928) 881-56-12</a>
           <div class="basket-ico basket-mb">
             <nuxt-link to="/cart">
               <span class="ico-holder">
@@ -44,7 +44,7 @@
         <HeaderList @close="isActive=!isActive" />
           <ul class="top-list">
             <li class="nav-btn yellow-color">
-              <a href="tel:89960501010" class="tel-lg">+7 (996) 050-10-10</a>
+              <a href="tel:89288815612" class="tel-lg">+7 (928) 881-56-12</a>
             </li>
             <li class="basket-ico ico-30 basket-lg">
               <nuxt-link to="/cart">
