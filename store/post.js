@@ -28,9 +28,9 @@ export const actions = {
       throw e
     }
   },
-  async update({commit}, {id, text}) {
+  async update({commit}, {id, text, title, recommend, oldprice}) {
     try {
-      return await this.$axios.$put(`/api/post/admin/${id}`, {text})
+      return await this.$axios.$put(`/api/post/admin/${id}`, {text, title, recommend, oldprice})
     } catch (e) {
       commit('setError', e, {root: true})
       throw e
@@ -46,6 +46,19 @@ export const actions = {
       throw e
     }
   },
+  async uploudImages({commit}, {id, images}) {
+    try {
+      const fd = new FormData()
+      for( var i = 0; i < images.length; i++ ){
+        let file = images[i].raw;
+        fd.append('images', file);
+      }
+      return await this.$axios.$post(`/api/post/uploudImages/${id}`, fd)
+    } catch (e) {
+      commit('setError', e, {root: true})
+      throw e
+    }
+  },
   async updateImage({commit}, {id, imageUrl}) {
     try {
       return await this.$axios.$put(`/api/post/updateImage/${id}`, {imageUrl})
@@ -54,18 +67,34 @@ export const actions = {
       throw e
     }
   },
-  async create ({commit}, {title, text, price, category, categoryname, image}) {
-
-    try{
+  async updateImages({commit}, {id, images}) {
+    try {
       const fd = new FormData()
+      fd.append('image', images)
+      return await this.$axios.$put(`/api/post/updateImages/${id}`, fd)
+    } catch (e) {
+      commit('setError', e, {root: true})
+      throw e
+    }
+  },
+  async create ({commit}, {title, text, price, category, categoryname, image, images, recommend}) {
 
+    try {
+      const fd = new FormData()
       fd.append('title', title)
       fd.append('text', text)
       fd.append('price', price)
       fd.append('category', category)
       fd.append('categoryname', categoryname)
-      fd.append('image', image, image.name)
-
+      fd.append('image', image)
+      fd.append('recommend', recommend)
+      for( var i = 0; i < images.length; i++ ){
+        let file = images[i].raw;
+        fd.append('images', file);
+      }
+      // for (var pair of fd.entries()) {
+      //   console.log(pair[0]+ ', ' + pair[1]); 
+      // }
       return await this.$axios.$post('/api/post/admin', fd)
 
     } catch (e) {

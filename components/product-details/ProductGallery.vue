@@ -7,20 +7,19 @@
           <img class="img-fluid" :src="activeImage" :alt="product.title">
         </div>
       </div>
-
       <div class="tabs-nav">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <!-- <ul class="tabs-2 clearfix">
+            <ul class="tabs-2 clearfix">
                <li
-                v-for="image in product.imageUrl"
+                v-for="image in product.images"
                 :key="image"
                 class="tab-link displayed"
-                @click="showImage(image)"
+                @click="showImage(image.filname)"
               >
-                <img :src="`${imageUrl}`" :alt="product.title">
+                <img :src="`/${image.filname}`" :alt="product.title">
               </li>
-            </ul> -->
+            </ul>
           </div>
         </div>	
       </div>
@@ -47,7 +46,7 @@ export default {
   computed: {
     activeImage () {
       if (this.selectedImage) {
-        return this.selectedImage
+        return '/'+this.selectedImage
       } else if (this.product.imageUrl) {
         return this.product.imageUrl
       } else {

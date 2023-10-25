@@ -3,16 +3,23 @@ const Post = require('../models/post.model')
 
 debugger
 module.exports.create = async (req, res) => {
+  const imagesUrls = req.files.images.map((item) => {
+    return {
+      filname: item.filename
+    }
+  })
   const post = new Post({
     title: req.body.title,
     text: req.body.text,
     price: req.body.price,
     category: req.body.category,
     categoryname: req.body.categoryname,
-    imageUrl: `/${req.file.filename}`
+    imageUrl: `/${req.files.image[0].filename}`,
+    images: imagesUrls,
+    recommend: req.body.recommend,
+    // oldprice: req.body.oldprice
   })
 
-  // console.log(req.body.title)
   try {
     await post.save()
     res.status(201).json(post)
@@ -42,7 +49,10 @@ module.exports.getById = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   const $set = {
-    text: req.body.text
+    text: req.body.text, 
+    title: req.body.title,
+    recommend: req.body.recommend,
+    oldprice: req.body.oldprice,
     // imageUrl: `/${req?.file?.filename}`
   }
   try {
@@ -54,6 +64,7 @@ module.exports.update = async (req, res) => {
     res.status(500).json(e)
   }
 }
+
 module.exports.uploudImage = async (req, res) => {
   const $set = {
     imageUrl: `/${req.file.filename}`
@@ -68,9 +79,43 @@ module.exports.uploudImage = async (req, res) => {
   }
 }
 
+module.exports.uploudImages = async (req, res) => {
+  const imagesUrls = req.files.images.map((item) => {
+    return {
+      filname: item.filename
+    }
+  })
+  const $set = {
+    images: imagesUrls
+  }
+  
+  try {
+    const post = await Post.findOneAndUpdate({
+      _id: req.params.id
+    }, {$set}, {new: true})
+    res.json(post)
+  } catch (e) {
+    res.status(500).json(e)
+  }
+}
+
 module.exports.updateImage = async (req, res) => {
   const $set = {
     imageUrl: req.body.imageUrl
+  }
+  try {
+    const post = await Post.findOneAndUpdate({
+      _id: req.params.id
+    }, {$set}, {new: true})
+    res.json(post)
+  } catch (e) {
+    res.status(500).json(e)
+  }
+}
+
+module.exports.updateImages = async (req, res) => {
+  const $set = {
+    images: req.body.imageUrl
   }
   try {
     const post = await Post.findOneAndUpdate({

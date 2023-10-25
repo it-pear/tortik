@@ -33,7 +33,7 @@
         >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
-          <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
+          <div class="el-upload__tip" slot="tip">Файлы с расширением svg</div>
         </el-upload>
       </el-form-item>
       

@@ -3,6 +3,7 @@ const multer = require('multer')
 const moment = require('moment')
 
 const storage = multer.diskStorage({
+  
   destination(req, file, cb) {
     cb(null, path.resolve(__dirname, '../../', 'static'))
   },
@@ -11,9 +12,8 @@ const storage = multer.diskStorage({
   }
 })
 
-
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/svg+xml') {
     cb(null, true)
   } else {
     cb(null, false)

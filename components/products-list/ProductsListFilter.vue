@@ -9,6 +9,7 @@
               :key="category._id"
               class="tab-link"
               :class="{ 'current': $route.params.category === `${category._id}` }"
+              v-if="category.slug != 'pizza'"
             >
               <nuxt-link :to="`/category/${category._id}`">
                 <img class="categoryimg" :src="`${category.imageUrl}`" alt="">
@@ -17,11 +18,11 @@
                 </h5>
               </nuxt-link>
             </li>
-
           </ul>
         </div>
       </div>
     </div>
+    <div id="menu-products"></div>
   </div> <!-- END TABS NAVIGATION -->
 </template>
 

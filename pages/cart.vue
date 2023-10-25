@@ -135,10 +135,14 @@ export default {
       cartPrice: 'cart/totalPrice'
     }),
     filteredProducts() {
-      return this.cartProducts.map(p => p.product.title).join()
-    },
-    filteredProducts2() {
-      return this.cartProducts.map( p => p.qty).join()
+      let productsCart = this.cartProducts.map(c => {
+        return {
+          title: c.product.title,
+          qty: c.qty,
+          price: c.price * c.qty
+        }
+      })
+      return productsCart
     }
   },
   methods: {
@@ -167,28 +171,21 @@ export default {
     async onSubmit() {
       if (this.isValid()) {
         
-        // this.$axios({
-        //   method: 'post',
-        //   url: '//holidaysushi.ru//sendmail2.php',
-        //   headers: { 'content-type': 'application/json' },
-        //   data: state
-        // }).then(res => {
-        //   this.sent = true;
-        // });
-
-        // this.$axios.post(
-        //   "https://api.telegram.org/bot1558775847:AAEB42_s9dLU73wqhz3t90kB5S40Tul2FCI/sendMessage?chat_id=1400064880&parse_mode=html&text=" +
-        //   JSON.stringify(
-        //     "Имя " + this.name + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " +
-        //     "Телефон " + this.phone + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " +
-        //     "Адрес " + this.adres + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " 
-        //     + "Блюда " + this.filteredProducts + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " 
-        //     + "Количество: " + this.filteredProducts2 + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + " " 
-        //     + "Итоговая цена заказа " + this.cartPrice 
-        //   ) 
-        // ).then(res => {
-        //   this.sent = true;
-        // });
+        var state = {
+          name: this.name,
+          phone: this.phone,
+          adres: this.adres,
+          menu: this.filteredProducts,
+          totalprice: this.cartPrice
+        };
+        this.$axios({
+          method: 'post',
+          url: 'https://api.takeshigel.ru/sendmail.php',
+          headers: { 'content-type': 'application/json' },
+          data: state
+        }).then(res => {
+          this.sent = true;
+        });
         
         const formData = {
           name: this.name,
@@ -199,17 +196,12 @@ export default {
 
         try {
           await this.$store.dispatch('cart/create', formData)
-          // alert('все хорошо')
+          alert('Ваше сообщение успешно отправлено')
         } catch (e) {} finally {
           this.loading = false
         }
-
-        // if (success) {
-        //   this.status = success ? cartStatus.success : cartStatus.fail;
-        //   document.location.href = '/thank'
-        // } else {
-        //   alert('asdasd');
-        // }
+        
+        document.location.href = '/thank'
         
       }
     }

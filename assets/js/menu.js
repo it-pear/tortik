@@ -337,4 +337,5 @@ jQuery(document).ready(function() {
 		return iconColorAttr;
 	});
 
+
 });

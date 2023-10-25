@@ -1,5 +1,6 @@
 <template>
-  <div class="col-sm-6 col-lg-3">
+  <div class="col-6 col-lg-3">
+    
     <nuxt-link
       :to="`/product/${product._id}`"
     >
@@ -32,13 +33,16 @@
           </div>
 
           <h5 class="h5-sm">{{ product.title }}</h5>
-          <div class="menu-6-price bg-salmon">
+          <div>
+            <p style="margin-bottom: 0;font-size: 18px;" v-show="product.oldprice != null"><s>{{product.oldprice}} ₽</s></p>
+            <div class="menu-6-price bg-salmon">
             <h5 class="h5-xs white-color">{{ product.price }} ₽</h5>
-          </div>
-          <div class="add-to-cart bg-yellow ico-10">
-            <a @click.prevent="addToCartInlist"
-              ><span class="flaticon-shopping-bag"></span> Добавить</a
-            >
+            </div>
+            <div class="add-to-cart bg-yellow ico-10">
+              <a @click.prevent="addToCartInlist"
+                ><span class="flaticon-shopping-bag"></span> Хочу</a
+              >
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,9 @@
       <el-breadcrumb-item to="/admin/list">Посты</el-breadcrumb-item>
       <el-breadcrumb-item>{{post.title}}</el-breadcrumb-item>
     </el-breadcrumb>
-
+  <!-- {{post.images}} -->
+  
+  <!-- <img :src='"/"+post.images[1].filname' alt=""> -->
     <el-form
       :model="controls"
       :rules="rules"
@@ -12,7 +14,22 @@
       @submit.native.prevent="onSubmit"
     >
       <!-- <h1>Вход</h1> -->
-
+      <el-form-item label="Текст" prop="title">
+        <el-input
+          type="input"
+          v-model.trim="controls.title"
+          resize="none"
+          :rows="10"
+        />
+      </el-form-item>
+      <el-form-item label="Цена без скидки (только цифры)" prop="oldprice">
+        <el-input
+          type="number"
+          v-model.trim="controls.oldprice"
+          resize="none"
+          :rows="10"
+        />
+      </el-form-item>
       <el-form-item label="Текст в формате .md или .html" prop="text">
         <el-input
           type="textarea"
@@ -21,36 +38,84 @@
           :rows="10"
         />
       </el-form-item>
-      <el-form-item label="Картинка" prop="text" class="el-form-item-image">
-        <img :src='image' alt="">
-        <el-button
-          type="danger"
-          round
-          :loading="loading"
-          @click="delImage"
-        >
-          Удалить картинку
-        </el-button>
-        <br>
+      <el-form-item label="Популярный товар" prop="recommend">
+        <el-checkbox v-model="controls.recommend"><small>(отметьте если надо вывести товар на главной странице)</small></el-checkbox>
+      </el-form-item>
+      <br>
+      <label>Галерея Картинок</label>
+      <ul class="img-collection" style="display: flex;">
+        <li v-for="img in images" :key="img.filname">
+          <img :src="`/${img.filname}`" alt="">
+        </li>
+      </ul>
+      <el-form-item prop="images" style="margin-top: 20px;">
         <el-upload
           drag
+          multiple
           ref="upload"
           action="https://jsonplaceholder.typicode.com/posts/"
-          :on-change="handleImageChange"  
+          :on-change="handleImagesChange"
           :auto-upload="false"
         >
           <i class="el-icon-upload"></i>
-          <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
+          <div class="el-upload__text">Перетащите картинки <em>или нажмите</em></div>
           <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
         </el-upload>
         <el-button
           type="warning"
           round
           :loading="loading"
-          @click="uploudmage"
+          @click="uploudImages"
         >
-          Обновить картинку
+          Обновить картинки
         </el-button>
+        <!-- <el-button
+          type="danger"
+          round
+          :loading="loading"
+          @click="delImages"
+        >
+          Удалить картинки
+        </el-button> -->
+      </el-form-item>
+      <br>
+      <el-form-item label="Главная Картинка" prop="text" class="el-form-item-image">
+        <div style="display: flex;">
+          <div>
+            <img :src='image' alt="">
+            <el-button
+              type="danger"
+              round
+              :loading="loading"
+              @click="delImage"
+            >
+              Удалить картинку
+            </el-button>
+          </div>
+          <div>
+            <el-upload
+              drag
+              ref="upload"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :on-change="handleImageChange"  
+              :auto-upload="false"
+            >
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
+              <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
+            </el-upload>
+            <el-button
+              type="warning"
+              round
+              :loading="loading"
+              @click="uploudmage"
+            >
+              Обновить картинку
+            </el-button>
+          </div>
+        </div>
+        <br>
+        
       </el-form-item>
       <br>
       <div class="mb">
@@ -103,8 +168,12 @@ export default {
       loading: false,
       post: [],
       image: null,
+      images: [],
       controls: {
-        text: ''
+        text: '',
+        title: '',
+        recommend: false,
+        oldprice: ''
       },
       rules: {
         text: [
@@ -115,11 +184,20 @@ export default {
   },
   mounted() {
     this.controls.text = this.post.text
+    this.controls.title = this.post.title
+    this.controls.oldprice = this.post.oldprice
+    if (this.post.recommend != '') {
+      this.controls.recommend = this.post.recommend
+    }
     this.image = this.post.imageUrl
+    this.images = this.post.images
   },
   methods: {
     handleImageChange(file) {
       this.image = file.raw 
+    },
+    handleImagesChange(file, fileLiset) {
+      this.images = fileLiset
     },
     uploudmage() {
       this.$refs.form.validate(async valid => {
@@ -129,7 +207,6 @@ export default {
             image: this.image,
             id: this.post._id
           }
-          
           // console.log(post)
           try {
             await this.$store.dispatch('post/uploudImage', formData)
@@ -138,6 +215,30 @@ export default {
               
               // return this.image = post
             this.$message.success('картинка обновлена')
+            this.loading = false
+          } catch (e) {
+            this.$message.warning('что то пошло не так, попробуйте позже')
+            this.loading = false
+          }
+        }
+      })   
+    },
+    uploudImages() {
+      this.$refs.form.validate(async valid => {
+        if (valid && this.images) {
+          this.loading = true
+          const formData = {
+            images: this.images,
+            id: this.post._id
+          }
+          // console.log(post)
+          try {
+            await this.$store.dispatch('post/uploudImages', formData)
+            const post = await this.$store.dispatch('post/fetchAdminById', formData.id)
+            this.images = post.images
+              
+              // return this.image = post
+            this.$message.success('картинки обновлены')
             this.loading = false
           } catch (e) {
             this.$message.warning('что то пошло не так, попробуйте позже')
@@ -170,6 +271,30 @@ export default {
         }
       })
     },
+    delImages() {
+      this.$refs.form.validate(async valid => {
+        if (valid && this.images) {
+          this.loading = true
+          
+          const formData = {
+            images: null,
+            id: this.post._id
+          }
+          
+          try {
+            await this.$store.dispatch('post/updateImages', formData)
+            
+            this.$message.success('картинки удалены')
+            this.loading = false
+            this.images = null
+          } catch (e) {
+            this.$message.warning('что то пошло не так, попробуйте позже')
+            this.loading = false
+          }
+          
+        }
+      })
+    },
     onSubmit() {
       this.$refs.form.validate(async valid => {
         if (valid) {
@@ -177,6 +302,9 @@ export default {
           
           const formData = {
             text: this.controls.text,
+            title: this.controls.title,
+            recommend: this.controls.recommend,
+            oldprice: this.controls.oldprice,
             id: this.post._id
           }
           
@@ -214,6 +342,15 @@ export default {
     }
     button {
       margin-top: 14px;
+    }
+  }
+  .img-collection {
+    li {
+      max-width: 150px;
+      margin-right: 10px;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }

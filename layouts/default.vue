@@ -9,7 +9,9 @@
       <Sales />
       <Contacts />
       <Delivery />
+    
     </div>
+    
     <AppFooter />
   </div>
 </template>

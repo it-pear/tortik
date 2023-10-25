@@ -10,8 +10,12 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate"
   },
+  "nuxt": {
+    "port": 8080
+  },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/yandex-metrika": "^1.4.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "chart.js": "^2.9.4",

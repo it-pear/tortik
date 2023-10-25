@@ -1,15 +1,24 @@
 <template>
   <ul class="top-list" id="navik-header-container-top-list">
     <li
-      v-for="category in categories"
-      :key="category._id"
+      v-for="link in links"
+      :key="link._id"
       v-on:click="onclick"
     >
       <nuxt-link
-        :to="`/category/${category._id}`"
+        :to="`/${link.link}`"
       >
-        {{ category.title }}
+        {{ link.title }}
       </nuxt-link>
+    </li>
+    <li class="d-block d-md-none">
+      <a href="tel:89003510000">8 (900) 351-00-00</a>
+    </li> 
+    <li class="d-block d-md-none">
+      <a href="#" style="text-align: left;margin-top: 8px;line-height: 1.1;">
+        г. Геленджик<br>
+        ул. Революционная 47
+        </a>
     </li>
   </ul>
 </template>
@@ -20,25 +29,38 @@ export default {
   name: "ProductsListFilter",
   data() {
     return {
-      categories: null
+      links: [
+        {
+          title: 'Меню',
+          link: ''
+        },
+        {
+          title: 'О нас',
+          link: 'about'
+        },
+        {
+          title: 'Доставка и оплата',
+          link: 'delivery'
+        },
+      ]
     };
   },
   methods: {
     onclick() {
       this.$emit('close')
     },
-  },
-  mounted() {
-    fetch(`/api/category`)
-    .then(response => response.json())
-    .then(json => this.categories = json)
   }
 };
 </script>
 
 <style lang="scss">
 .categoryimg {
-  max-height: 55px;
+  height: 35px;
+}
+@media (max-width: 772px) {
+  .categoryimg {
+    height: 25px;
+  }
 }
 @media (min-width: 772px) {
   #navik-header-container-top-list {
@@ -46,6 +68,7 @@ export default {
     max-width: 75% !important;
     padding-left: 30px;
     flex-wrap: wrap;
+    align-items: center;
     li {
       a {
         font-size: 16px !important;

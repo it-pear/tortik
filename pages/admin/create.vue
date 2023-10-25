@@ -46,12 +46,17 @@
         </el-select>
       </el-form-item>
 
+      <el-form-item label="Популярный товар" prop="recommend">
+        <el-checkbox v-model="controls.recommend"><small>(отметьте если надо вывести товар на главной странице)</small></el-checkbox>
+      </el-form-item>
+
       <el-dialog title="Предпросмотр" :visible.sync="previewDialog">
         <div :key="controls.text">
           <vue-markdown>{{controls.text}}</vue-markdown> 
         </div>
       </el-dialog>
 
+      <h5>Главное фото</h5>
       <el-upload
         class="mb"
         drag
@@ -64,14 +69,29 @@
         <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
         <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
       </el-upload>
+      <br>
 
+      <h5>Галерея фото</h5>
+      <el-upload
+        class="mb"
+        drag
+        multiple
+        ref="uploads"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-change="handleImagesChange"  
+        :auto-upload="false"
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">Перетащите картинки <em>или нажмите</em></div>
+        <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
+      </el-upload>
+      
       <el-form-item>
         <el-button type="primary" native-type="submit" round :loading="loading">
           Создать пост
         </el-button>
       </el-form-item>
     </el-form>
-
   </div>
 </template>
 
@@ -84,13 +104,15 @@ export default {
   data() {
     return {
       image: null,
+      images: null,
       previewDialog : false,
       loading: false,
       controls: {
         title: '',
         text: '',
         price: '',
-        category: ''
+        category: '',
+        recommend: false
       },
       rules: {
         text: [
@@ -121,11 +143,13 @@ export default {
   methods: {
     handleImageChange(file, fileLiset) {
       this.image = file.raw
-      console.log(this.image)
+    },
+    handleImagesChange(file, fileLiset) {
+      this.images = fileLiset
     },
     onSubmit() {
       this.$refs.form.validate(async valid => {
-        if (valid && this.image) {
+        if (valid && this.image && this.images) {
           this.loading = true
           
           const formData = {
@@ -134,22 +158,26 @@ export default {
             price: this.controls.price,
             category: this.controls.category,
             categoryname: this.categoryname,
-            image: this.image
+            image: this.image,
+            images: this.images,
+            recommend: this.controls.recommend
           }
-
+  
           try {
             await this.$store.dispatch('post/create', formData)
             this.controls.title = ''
             this.controls.text = ''
             this.controls.price = ''
             this.controls.category = ''
+            this.controls.recommend = false
             this.image = null
             this.$refs.upload.clearFiles()
+            this.$refs.uploads.clearFiles()
             this.$message.success('Пост создан')
           } catch (e) {} finally {
             this.loading = false
+            // this.$message.success('Пост создан')
           }
-          
         } else {
           this.$message.warning('Форма не валидна')
         }

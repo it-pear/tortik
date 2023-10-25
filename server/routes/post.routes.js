@@ -8,9 +8,27 @@ const router = Router()
 router.post(
   '/admin/',
   passport.authenticate('jwt', {session: false}),
-  upload.single('image'), 
+  upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'images', maxCount: 10 },
+  ]),
   ctr.create 
 )
+
+router.post(
+  '/uploudImages/:id',
+  passport.authenticate('jwt', {session: false}),
+  upload.fields([
+    { name: 'images', maxCount: 10 }
+  ]),
+  ctr.uploudImages,
+)
+// router.post(
+//   '/uploudImages/:id',
+//   passport.authenticate('jwt', {session: false}),
+//   upload.single('image'),
+//   ctr.uploudImage,
+// )
 
 router.get(
   '/admin/',
@@ -39,6 +57,17 @@ router.put(
   '/updateImage/:id',
   passport.authenticate('jwt', {session: false}), 
   ctr.updateImage
+)
+router.put(
+  '/updateImages/:id',
+  passport.authenticate('jwt', {session: false}), 
+  ctr.updateImages
+)
+router.put(
+  '/uploudImages/:id',
+  passport.authenticate('jwt', {session: false}),
+  upload.single('image'),
+  ctr.uploudImage,
 )
 
 router.delete(

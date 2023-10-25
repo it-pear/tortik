@@ -1,6 +1,17 @@
 <template>
   <div>
     <HeaderSingle :product="product" />
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="breadcumbers">
+            <li><nuxt-link to="/">Главная</nuxt-link> > </li>
+            <li><nuxt-link :to="`/category/${product.category}`">{{product.categoryname}}</nuxt-link> > </li>
+            <li><p>{{product.title}}</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <section id="product-1" class="pt-100 single-product division pb-4">
       <div class="container">
         <div class="row">
@@ -20,6 +31,9 @@
                 <h2 class="h2-lg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ product.title }}</font></font></h2>
                 <!-- Price -->
                 <div class="project-price">
+                  <h4>
+                    <small v-show="product.oldprice != null">Цена без скидки: <s>{{product.oldprice}}</s> ₽ублей</small>
+                  </h4>
                   <h4 class="h4-xl yellow-color">
                     <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">

@@ -13,6 +13,10 @@ const postSchema = new Schema({
     type: Number,
     required: true
   },
+  oldprice: {
+    type: Number,
+    required: false
+  },
   category: {
     type: String,
     required: true
@@ -30,6 +34,14 @@ const postSchema = new Schema({
     default: 0
   },
   imageUrl: String,
+  images: {
+    type: Array,
+    required: true
+  },
+  recommend: {
+    type: Boolean,
+    required: true
+  },
   comments: [
     {
       type: Schema.Types.ObjectId,

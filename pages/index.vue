@@ -15,22 +15,19 @@
         <products-list-filter :categories="categories" />
 
         <div class="row">
+          <div class="name_cetegory">
+            Популярные блюда
+          </div>
+        </div>
+        <div class="row">
           <products-list-card
-            v-for="product in products.slice(0, 8)" 
+            v-for="product in filteredPosts.slice(0, 10)" 
             :key="product._id"
             :product="product"
+            v-if="product.category != '625bd4ac61d7c5c1475c5b5f'"
           />
-          <!-- <products-list-card
-            v-for="product in filteredPosts.slice(0, 8)" 
-            :key="product.id"
-            :product="product"
-          />
-          <products-list-card
-            v-for="product in filteredPoststwo.slice(0, 3)" 
-            :key="product.id"
-            :product="product"
-          /> -->
         </div>
+        <ScrollMobMenu />
 
       </div>
     </section>
@@ -41,9 +38,18 @@
 <script>
 import ProductsListCard from '~/components/products-list/ProductListCard'
 import ProductsListFilter from '~/components/products-list/ProductsListFilter'
+import ScrollMobMenu from '~/components/products-list/ScrollMobMenu'
+
 export default {
   head: {
-    title: `Главная | ${process.env.appName}`
+    title: `Доставка суши, роллов, пиццы, напитков в Геленджике. Честные цены, выгодные условия | ${process.env.appName}`,
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Доставка суши, роллов и пиццы в Геленлжике и Геленджикском районе. Свежие, вкусные блюда на вашем столе от Takeshi без перерывов и выходных. Выгодные цены и бесплатная доставка от 800 руб'
+      }
+    ],
   },
   async asyncData({store}) {
     const products = await store.dispatch('post/fetch')
@@ -52,7 +58,13 @@ export default {
   },
   components: {
     ProductsListCard,
-    ProductsListFilter
+    ProductsListFilter,
+    ScrollMobMenu
+  },
+  computed: {
+    filteredPosts() {
+      return this.products.filter(p => p.recommend === true)
+    }
   }
 }
 </script>

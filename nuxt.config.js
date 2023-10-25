@@ -3,9 +3,9 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'history' ,
-  // server: {
-  //   host: '62.113.98.94'
-  // },
+  server: {
+    port: 8080
+  },
   head: {
     title: pkg.name,
     meta: [
@@ -22,7 +22,7 @@ module.exports = {
 
   css: [
     
-    // '@/theme/index.scss',
+    // '@/theme/index.scss',pla
     '@/assets/css/style.min.css',
     'element-ui/lib/theme-chalk/index.css',
   ],
@@ -33,15 +33,27 @@ module.exports = {
   ],
 
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '88418948',
+        clickmap:true, 
+        trackLinks:true, 
+        accurateTrackBounce:true, 
+        webvisor:true 
+      }
+    ]
   ],
 
   axios: {
-    baseURL: 'http://kulinariagel.ru'
+    baseURL: 'https://takeshigel.ru'
   },
 
   env: {
-    appName: 'kulinariagel.ru'
+    appName: 'takeshigel.ru',
+    port: 8080,
+    baseURL: 'https://takeshigel.ru'
   },
 
   build: {
